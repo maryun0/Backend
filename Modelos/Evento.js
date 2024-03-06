@@ -1,4 +1,5 @@
-// Evento.js
+import EventoDAO from "../Persistencia/eventoDAO.js";
+
 export default class Evento {
     #codigo;
     #Sobre_Evento;
@@ -22,97 +23,112 @@ export default class Evento {
         this.#email = email;
     }
 
-    // Getters
-    get codigo() {
-        return this.#codigo;
+    set codigo(novoCodigo){
+        this.#codigo = novoCodigo;
     }
 
-    get Sobre_Evento() {
+    get Sobre_Evento(){
         return this.#Sobre_Evento;
     }
 
-    get Nome_Evento() {
+    set Sobre_Evento(novoSobre_Evento){
+        this.#Sobre_Evento = novoSobre_Evento;
+    }
+
+    get Nome_Evento(){
         return this.#Nome_Evento;
     }
 
-    get Data_Hora() {
+    set Nome_Evento(novoNome_Evento){
+        this.#Nome_Evento = novoNome_Evento;
+    }
+
+    get Data_Hora(){
         return this.#Data_Hora;
     }
 
-    get Local_Evento() {
+    set Data_Hora(novoData_Hora){
+        this.#Data_Hora = novoData_Hora;
+    }
+
+    get Local_Evento(){
         return this.#Local_Evento;
     }
 
-    get Preco() {
+    set Local_Evento(novoLocal_Evento){
+        this.#Local_Evento = novoLocal_Evento;
+    }
+
+    get Preco(){
         return this.#Preco;
     }
 
-    get Quantidade_ingresso() {
+    set Preco(novoPreco){
+        this.#Preco = novoPreco;
+    }
+
+    get Quantidade_ingresso(){
         return this.#Quantidade_ingresso;
     }
 
-    get telefone() {
+    set Quantidade_ingresso(novoQuantidade_ingresso){
+        this.#Quantidade_ingresso = novoQuantidade_ingresso;
+    }
+
+    get telefone(){
         return this.#telefone;
     }
 
-    get email() {
+    set telefone(novoTelefone){
+        this.#telefone = novoTelefone;
+    }
+
+    get email(){
         return this.#email;
     }
 
-    // Setters
-    set codigo(newValue) {
-        this.#codigo = newValue;
+    set email(novoEmail){
+        this.#email = novoEmail;
     }
 
-    set Sobre_Evento(newValue) {
-        this.#Sobre_Evento = newValue;
+    //como armazenar os clientes no banco de dados?
+
+    async gravar(){
+        const dao = new EventoDAO();
+        await dao.gravar(this); //this pode ser compreendido com a seguinte expressão:	"grave a mim mesmo"
     }
 
-    set Nome_Evento(newValue) {
-        this.#Nome_Evento = newValue;
+    async atualizar(){
+        const dao = new EventoDAO();
+        await dao.atualizar(this);
     }
 
-    set Data_Hora(newValue) {
-        this.#Data_Hora = newValue;
+    async excluir(){
+        const dao = new EventoDAO();
+        await dao.excluir(this);
     }
 
-    set Local_Evento(newValue) {
-        this.#Local_Evento = newValue;
+    async consultar(termoDePesquisa){
+        const dao = new EventoDAO();
+        return await dao.consultar(termoDePesquisa);
     }
 
-    set Preco(newValue) {
-        this.#Preco = newValue;
+
+    toString(){
+        return `Evento código: ${this.#codigo} -  nome: ${this.#Sobre_Evento}`;
     }
 
-    set Quantidade_ingresso(newValue) {
-        this.#Quantidade_ingresso = newValue;
-    }
-
-    set telefone(newValue) {
-        this.#telefone = newValue;
-    }
-
-    set email(newValue) {
-        this.#email = newValue;
-    }
-
-    // Método para representar o objeto Evento como string
-    toString() {
-        return `Evento [${this.#codigo}]: ${this.#Nome_Evento}, Data: ${this.#Data_Hora}`;
-    }
-
-    // Método para converter o objeto Evento para um formato JSON
-    toJSON() {
+    toJSON(){
         return {
-            codigo: this.#codigo,
-            Sobre_Evento: this.#Sobre_Evento,
-            Nome_Evento: this.#Nome_Evento,
-            Data_Hora: this.#Data_Hora,
-            Local_Evento: this.#Local_Evento,
-            Preco: this.#Preco,
-            Quantidade_ingresso: this.#Quantidade_ingresso,
-            telefone: this.#telefone,
-            email: this.#email
-        };
+            "codigo": this.#codigo,
+            "cpf": this.#Sobre_Evento,
+            "nome": this.#Nome_Evento,
+            "endereco": this.#Data_Hora,
+            "bairro": this.#Local_Evento,
+            "cidade": this.#Preco,
+            "estado": this.#Quantidade_ingresso,
+            "telefone": this.#telefone,
+            "email": this.#email
+        }
     }
 }
