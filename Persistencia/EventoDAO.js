@@ -1,6 +1,5 @@
-import conectar from "./Conexao.js"; //não esquecer de colocar a extensão .js no final
+import conectar from "./Conexao.js";
 import Evento from "../Modelos/Evento.js";
-//DAO - Data Access Object
 export default class EventoDAO{
     async gravar(evento){
         if (evento instanceof Evento){
@@ -9,7 +8,7 @@ export default class EventoDAO{
                 Preco, Quantidade_ingresso, telefone, email) 
                          values (?, ?, ?, ?, ?, ?, ?, ?)`;
             const parametros = [
-                evento.Sobre_Evento,
+                evento.Sobre_Evento, 
                 evento.Nome_Evento,
                 evento.Data_Hora,
                 evento.Local_Evento,

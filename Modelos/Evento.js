@@ -1,7 +1,7 @@
 import EventoDAO from "../Persistencia/eventoDAO.js";
 
 export default class Evento {
-    #codigo;
+    #id;
     #Sobre_Evento;
     #Nome_Evento;
     #Data_Hora;
@@ -11,8 +11,8 @@ export default class Evento {
     #telefone;
     #email;
 
-    constructor(codigo = 0, Sobre_Evento = "", Nome_Evento = "", Data_Hora = "", Local_Evento = "", Preco = "", Quantidade_ingresso = "", telefone = "", email = "") {
-        this.#codigo = codigo;
+    constructor(id = 0, Sobre_Evento = "", Nome_Evento = "", Data_Hora = "", Local_Evento = "", Preco = "", Quantidade_ingresso = "", telefone = "", email = "") {
+        this.#id = id;
         this.#Sobre_Evento = Sobre_Evento;
         this.#Nome_Evento = Nome_Evento;
         this.#Data_Hora = Data_Hora;
@@ -23,8 +23,8 @@ export default class Evento {
         this.#email = email;
     }
 
-    set codigo(novoCodigo){
-        this.#codigo = novoCodigo;
+    set id(novoid){
+        this.#id = novoid;
     }
 
     get Sobre_Evento(){
@@ -91,11 +91,9 @@ export default class Evento {
         this.#email = novoEmail;
     }
 
-    //como armazenar os clientes no banco de dados?
-
     async gravar(){
         const dao = new EventoDAO();
-        await dao.gravar(this); //this pode ser compreendido com a seguinte expressão:	"grave a mim mesmo"
+        await dao.gravar(this); 
     }
 
     async atualizar(){
@@ -115,18 +113,18 @@ export default class Evento {
 
 
     toString(){
-        return `Evento código: ${this.#codigo} -  nome: ${this.#Sobre_Evento}`;
+        return `Evento código: ${this.#id} -  nome: ${this.#Sobre_Evento}`;
     }
 
     toJSON(){
         return {
-            "codigo": this.#codigo,
-            "cpf": this.#Sobre_Evento,
-            "nome": this.#Nome_Evento,
-            "endereco": this.#Data_Hora,
-            "bairro": this.#Local_Evento,
-            "cidade": this.#Preco,
-            "estado": this.#Quantidade_ingresso,
+            "id": this.#id,
+            "Sobre_Evento": this.#Sobre_Evento,
+            "Nome_Evento": this.#Nome_Evento,
+            "Data_Hora": this.#Data_Hora,
+            "Local_Evento": this.#Local_Evento,
+            "Preco": this.#Preco,
+            "Quantidade_ingresso": this.#Quantidade_ingresso,
             "telefone": this.#telefone,
             "email": this.#email
         }
