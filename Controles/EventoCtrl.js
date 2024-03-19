@@ -26,19 +26,19 @@ export default class EventoCtrl{
             const Data_Hora = dados.Data_Hora;
             const Local_Evento = dados.Local_Evento;
             const Preco = dados.Preco;
-            const QuantIdade_ingresso = dados.QuantIdade_ingresso;
+            const Quantidade_ingresso = dados.Quantidade_ingresso;
             const telefone = dados.telefone;
             const email = dados.email;
 
             //pseudo valIdação nos dados
-            if (Sobre_Evento && Nome_Evento && Data_Hora && Local_Evento && Preco && QuantIdade_ingresso && telefone && email){
-                const evento = new Evento(0, Sobre_Evento, Nome_Evento, Data_Hora, Local_Evento, Preco, QuantIdade_ingresso, telefone, email);
+            if (Sobre_Evento && Nome_Evento && Data_Hora && Local_Evento && Preco && Quantidade_ingresso && telefone && email){
+                const evento = new Evento(0, Sobre_Evento, Nome_Evento, Data_Hora, Local_Evento, Preco, Quantidade_ingresso, telefone, email);
                 evento.gravar().then(()=>{
                     resposta.status(201);
                     resposta.json({
                         "status":true,
                         "mensagem": "Evento gravado com sucesso!",
-                        "codigo_evento": evento.codigo
+                        "Codigo_evento": evento.Codigo
                     });
                 }).catch((erro) =>{
                     resposta.status(500);
@@ -70,18 +70,18 @@ export default class EventoCtrl{
         if ((requisicao.method === "PATCH" || requisicao.method === "PUT") && requisicao.is('application/json')){
             const dados = requisicao.body; //extrair dados do corpo da requisição
             //o código será extraído da url, exemplo: http://localhost:3000/cliente/1  1 é o código
-            const Id = requisicao.params.Id;
+            const Codigo = requisicao.params.Codigo;
             const Sobre_Evento = dados.Sobre_Evento;
             const Nome_Evento = dados.Nome_Evento;
             const Data_Hora = dados.Data_Hora;
             const Local_Evento = dados.Local_Evento;
             const Preco = dados.Preco;
-            const QuantIdade_ingresso = dados.QuantIdade_ingresso;
+            const Quantidade_ingresso = dados.Quantidade_ingresso;
             const telefone = dados.telefone;
             const email = dados.email;
-            if (Id && Id > 0 && Sobre_Evento && Nome_Evento && Data_Hora && Local_Evento && Preco && QuantIdade_ingresso && telefone && email)
+            if (Codigo && Codigo > 0 && Sobre_Evento && Nome_Evento && Data_Hora && Local_Evento && Preco && Quantidade_ingresso && telefone && email)
             {
-                const evento = new Evento(Id, Sobre_Evento, Nome_Evento, Data_Hora, Local_Evento, Preco, QuantIdade_ingresso, telefone, email);
+                const evento = new Evento(Codigo, Sobre_Evento, Nome_Evento, Data_Hora, Local_Evento, Preco, Quantidade_ingresso, telefone, email);
                 evento.atualizar()
                 .then(()=>{
                     resposta.status(200);
@@ -118,9 +118,9 @@ export default class EventoCtrl{
     excluir(requisicao, resposta){
         resposta.type('application/json');
         if (requisicao.method === "DELETE"){
-            const Id = requisicao.params.Id;
-            if (Id && Id > 0){
-                const evento = new Evento(Id);
+            const Codigo = requisicao.params.Codigo;
+            if (Codigo && Codigo > 0){
+                const evento = new Evento(Codigo);
                 evento.excluir()
                 .then(()=>{
                     resposta.status(200);

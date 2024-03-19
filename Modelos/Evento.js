@@ -1,7 +1,7 @@
 import EventoDAO from "../Persistencia/EventoDAO.js";
 
 export default class Evento {
-    #Id;
+    #Codigo;
     #Sobre_Evento;
     #Nome_Evento;
     #Data_Hora;
@@ -11,20 +11,23 @@ export default class Evento {
     #telefone;
     #email;
 
-    constructor(Id = 0, Sobre_Evento = "", Nome_Evento = "", Data_Hora = "", Local_Evento = "", Preco = "", Quantidade_ingresso = "", telefone = "", email = "") {
-        this.#Id = Id;
+    constructor(Codigo = 0, Sobre_Evento = "", Nome_Evento = "", Data_Hora = "", Local_Evento = "", Preco = "", Quantidade_ingresso = "", telefone = "", email = "") {
+        this.#Codigo = Codigo;
         this.#Sobre_Evento = Sobre_Evento;
         this.#Nome_Evento = Nome_Evento;
         this.#Data_Hora = Data_Hora;
         this.#Local_Evento = Local_Evento;
         this.#Preco = Preco;
-        this.#Quantidade_ingresso = QuantIdade_ingresso;
+        this.#Quantidade_ingresso = Quantidade_ingresso;
         this.#telefone = telefone;
         this.#email = email;
     }
 
-    set Id(novoId){
-        this.#Id = novoId;
+    get Codigo(){
+        return this.#Codigo;
+    }    
+    set Codigo(novoCodigo){
+        this.#Codigo = novoCodigo;
     }
 
     get Sobre_Evento(){
@@ -67,12 +70,12 @@ export default class Evento {
         this.#Preco = novoPreco;
     }
 
-    get QuantIdade_ingresso(){
+    get Quantidade_ingresso(){
         return this.#Quantidade_ingresso;
     }
 
-    set QuantIdade_ingresso(novoQuantIdade_ingresso){
-        this.#Quantidade_ingresso = novoQuantIdade_ingresso;
+    set Quantidade_ingresso(novoQuantidade_ingresso){
+        this.#Quantidade_ingresso = novoQuantidade_ingresso;
     }
 
     get telefone(){
@@ -113,12 +116,12 @@ export default class Evento {
 
 
     toString(){
-        return `Evento código: ${this.#Id} -  nome: ${this.#Sobre_Evento}`;
+        return `Evento código: ${this.#Codigo} -  nome: ${this.#Sobre_Evento}`;
     }
 
     toJSON(){
         return {
-            "Id": this.#Id,
+            "Codigo": this.#Codigo,
             "Sobre_Evento": this.#Sobre_Evento,
             "Nome_Evento": this.#Nome_Evento,
             "Data_Hora": this.#Data_Hora,

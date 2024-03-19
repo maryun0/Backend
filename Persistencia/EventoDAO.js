@@ -18,7 +18,7 @@ export default class EventoDAO{
                 evento.email
             ];
             const [resultados, campos] = await conexao.execute(sql,parametros);
-            evento.Id = resultados.insertId; 
+            evento.Codigo = resultados.insertCodigo; 
         }
     }
 
@@ -28,7 +28,7 @@ export default class EventoDAO{
             const sql = `UPDATE evento SET Sobre_Evento = ?,
             Nome_Evento = ?, Data_Hora = ?, Local_Evento = ?,
             Preco = ?, QuantIdade_ingresso = ?, telefone = ?,
-                         email = ? WHERE Id = ?`;
+                         email = ? WHERE Codigo = ?`;
             const parametros = [
                 evento.Sobre_Evento, 
                 evento.Nome_Evento,
@@ -38,7 +38,7 @@ export default class EventoDAO{
                 evento.QuantIdade_ingresso,
                 evento.telefone,
                 evento.email,
-                evento.Id
+                evento.Codigo
             ];
 
             await conexao.execute(sql,parametros);
@@ -48,9 +48,9 @@ export default class EventoDAO{
     async excluir(evento){
         if (evento instanceof Evento){
             const conexao = await conectar();
-            const sql = `DELETE FROM evento WHERE Id = ?`;
+            const sql = `DELETE FROM evento WHERE Codigo = ?`;
             const parametros = [
-                evento.codigo
+                evento.Codigo
             ]
             await conexao.execute(sql,parametros);
         }
@@ -75,7 +75,7 @@ export default class EventoDAO{
         let listaEvento = [];
         for (const registro of registros){
             const evento = new Evento(
-                registro.Id,
+                registro.Codigo,
                 registro.Sobre_Evento,
                 registro.Nome_Evento,
                 registro.Data_Hora,
