@@ -38,7 +38,7 @@ export default class EventoCtrl{
                     resposta.json({
                         "status":true,
                         "mensagem": "Evento gravado com sucesso!",
-                        "id_evento": evento.id
+                        "codigo_evento": evento.codigo
                     });
                 }).catch((erro) =>{
                     resposta.status(500);
