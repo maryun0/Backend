@@ -38,7 +38,7 @@ export default class EventoCtrl{
                     resposta.json({
                         "status":true,
                         "mensagem": "Evento gravado com sucesso!",
-                        "codigo_evento": evento.codigo
+                        "id_evento": evento.id
                     });
                 }).catch((erro) =>{
                     resposta.status(500);
@@ -60,7 +60,7 @@ export default class EventoCtrl{
             resposta.status(405);
             resposta.json({
                 "status":false,
-                "mensagem": "Requisição inválida! Esperando o método POST e dados no formato JSON para gravar um cliente!"
+                "mensagem": "Requisição inválida! Esperando o método POST e dados no formato JSON para gravar um evento!"
             })
         }
     }
@@ -102,7 +102,7 @@ export default class EventoCtrl{
                 resposta.status(400);
                 resposta.json({
                     "status":false,
-                    "mensagem": "Por favor, informe todos os dados do evento, conforme documentação da API"
+                    "mensagem": "Por favor, informe todos os dados do cliente, conforme documentação da API"
                 })
             }
         }
@@ -110,7 +110,7 @@ export default class EventoCtrl{
             resposta.status(405);
             resposta.json({
                 "status":false,
-                "mensagem": "Requisição inválida! Esperando o método PATCH, PUT e dados no formato JSON para atualizar um evento!"
+                "mensagem": "Requisição inválida! Esperando o método PATCH, PUT e dados no formato JSON para atualizar um cliente!"
             })
         }
     }
@@ -120,7 +120,7 @@ export default class EventoCtrl{
         if (requisicao.method === "DELETE"){
             //o código do cliente que será excluído será extraído da url
             const id = requisicao.params.id;
-            if (codigo && codigo > 0){
+            if (id && id > 0){
                 const evento = new Evento(id);
                 evento.excluir()
                 .then(()=>{

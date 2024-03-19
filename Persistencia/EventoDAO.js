@@ -48,7 +48,7 @@ export default class EventoDAO{
     async excluir(evento){
         if (evento instanceof Evento){
             const conexao = await conectar();
-            const sql = `DELETE FROM cliente WHERE id = ?`;
+            const sql = `DELETE FROM evento WHERE id = ?`;
             const parametros = [
                 evento.codigo
             ]
