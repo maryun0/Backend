@@ -7,8 +7,8 @@ rotaEvento
 .get('/', eveCtrl.consultar)
 .get('/:termo', eveCtrl.consultar) 
 .post('/', eveCtrl.gravar)
-.put('/:id', eveCtrl.atualizar)
-.patch('/:id', eveCtrl.atualizar)
-.delete('/:id', eveCtrl.excluir);
+.put('/:Id', eveCtrl.atualizar)
+.patch('/:Id', eveCtrl.atualizar)
+.delete('/:Id', eveCtrl.excluir);
 
 export default rotaEvento;

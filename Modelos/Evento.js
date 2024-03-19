@@ -1,7 +1,7 @@
 import EventoDAO from "../Persistencia/EventoDAO.js";
 
 export default class Evento {
-    #id;
+    #Id;
     #Sobre_Evento;
     #Nome_Evento;
     #Data_Hora;
@@ -11,20 +11,20 @@ export default class Evento {
     #telefone;
     #email;
 
-    constructor(id = 0, Sobre_Evento = "", Nome_Evento = "", Data_Hora = "", Local_Evento = "", Preco = "", Quantidade_ingresso = "", telefone = "", email = "") {
-        this.#id = id;
+    constructor(Id = 0, Sobre_Evento = "", Nome_Evento = "", Data_Hora = "", Local_Evento = "", Preco = "", Quantidade_ingresso = "", telefone = "", email = "") {
+        this.#Id = Id;
         this.#Sobre_Evento = Sobre_Evento;
         this.#Nome_Evento = Nome_Evento;
         this.#Data_Hora = Data_Hora;
         this.#Local_Evento = Local_Evento;
         this.#Preco = Preco;
-        this.#Quantidade_ingresso = Quantidade_ingresso;
+        this.#Quantidade_ingresso = QuantIdade_ingresso;
         this.#telefone = telefone;
         this.#email = email;
     }
 
-    set id(novoid){
-        this.#id = novoid;
+    set Id(novoId){
+        this.#Id = novoId;
     }
 
     get Sobre_Evento(){
@@ -67,12 +67,12 @@ export default class Evento {
         this.#Preco = novoPreco;
     }
 
-    get Quantidade_ingresso(){
+    get QuantIdade_ingresso(){
         return this.#Quantidade_ingresso;
     }
 
-    set Quantidade_ingresso(novoQuantidade_ingresso){
-        this.#Quantidade_ingresso = novoQuantidade_ingresso;
+    set QuantIdade_ingresso(novoQuantIdade_ingresso){
+        this.#Quantidade_ingresso = novoQuantIdade_ingresso;
     }
 
     get telefone(){
@@ -113,18 +113,18 @@ export default class Evento {
 
 
     toString(){
-        return `Evento código: ${this.#id} -  nome: ${this.#Sobre_Evento}`;
+        return `Evento código: ${this.#Id} -  nome: ${this.#Sobre_Evento}`;
     }
 
     toJSON(){
         return {
-            "id": this.#id,
+            "Id": this.#Id,
             "Sobre_Evento": this.#Sobre_Evento,
             "Nome_Evento": this.#Nome_Evento,
             "Data_Hora": this.#Data_Hora,
             "Local_Evento": this.#Local_Evento,
             "Preco": this.#Preco,
-            "Quantidade_ingresso": this.#Quantidade_ingresso,
+            "QuantIdade_ingresso": this.#Quantidade_ingresso,
             "telefone": this.#telefone,
             "email": this.#email
         }

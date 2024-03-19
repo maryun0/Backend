@@ -8,5 +8,5 @@ const app = express();
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true })); 
 app.listen(porta, host, () => {
-    console.log(`Servidor rodando em http://${host}:${porta}`);
+    console.log(`ServIdor rodando em http://${host}:${porta}`);
 });

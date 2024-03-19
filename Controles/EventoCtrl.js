@@ -2,7 +2,7 @@ import Evento from "../Modelos/Evento.js";
 
 export default class EventoCtrl{
 
-    //Esta Classe terá a responsabilidade de traduzir pedidos HTTP em 
+    //Esta Classe terá a responsabilIdade de traduzir pedIdos HTTP em 
     //comandos internos da aplicação
     //A nossa aplicação sabe gravar, atualizar, excluir e consultar clientes 
     //no banco de dados
@@ -26,13 +26,13 @@ export default class EventoCtrl{
             const Data_Hora = dados.Data_Hora;
             const Local_Evento = dados.Local_Evento;
             const Preco = dados.Preco;
-            const Quantidade_ingresso = dados.Quantidade_ingresso;
+            const QuantIdade_ingresso = dados.QuantIdade_ingresso;
             const telefone = dados.telefone;
             const email = dados.email;
 
-            //pseudo validação nos dados
-            if (Sobre_Evento && Nome_Evento && Data_Hora && Local_Evento && Preco && Quantidade_ingresso && telefone && email){
-                const evento = new Evento(0, Sobre_Evento, Nome_Evento, Data_Hora, Local_Evento, Preco, Quantidade_ingresso, telefone, email);
+            //pseudo valIdação nos dados
+            if (Sobre_Evento && Nome_Evento && Data_Hora && Local_Evento && Preco && QuantIdade_ingresso && telefone && email){
+                const evento = new Evento(0, Sobre_Evento, Nome_Evento, Data_Hora, Local_Evento, Preco, QuantIdade_ingresso, telefone, email);
                 evento.gravar().then(()=>{
                     resposta.status(201);
                     resposta.json({
@@ -60,7 +60,7 @@ export default class EventoCtrl{
             resposta.status(405);
             resposta.json({
                 "status":false,
-                "mensagem": "Requisição inválida! Esperando o método POST e dados no formato JSON para gravar um evento!"
+                "mensagem": "Requisição inválIda! Esperando o método POST e dados no formato JSON para gravar um evento!"
             })
         }
     }
@@ -70,18 +70,18 @@ export default class EventoCtrl{
         if ((requisicao.method === "PATCH" || requisicao.method === "PUT") && requisicao.is('application/json')){
             const dados = requisicao.body; //extrair dados do corpo da requisição
             //o código será extraído da url, exemplo: http://localhost:3000/cliente/1  1 é o código
-            const id = requisicao.params.id;
+            const Id = requisicao.params.Id;
             const Sobre_Evento = dados.Sobre_Evento;
             const Nome_Evento = dados.Nome_Evento;
             const Data_Hora = dados.Data_Hora;
             const Local_Evento = dados.Local_Evento;
             const Preco = dados.Preco;
-            const Quantidade_ingresso = dados.Quantidade_ingresso;
+            const QuantIdade_ingresso = dados.QuantIdade_ingresso;
             const telefone = dados.telefone;
             const email = dados.email;
-            if (id && id > 0 && Sobre_Evento && Nome_Evento && Data_Hora && Local_Evento && Preco && Quantidade_ingresso && telefone && email)
+            if (Id && Id > 0 && Sobre_Evento && Nome_Evento && Data_Hora && Local_Evento && Preco && QuantIdade_ingresso && telefone && email)
             {
-                const evento = new Evento(id, Sobre_Evento, Nome_Evento, Data_Hora, Local_Evento, Preco, Quantidade_ingresso, telefone, email);
+                const evento = new Evento(Id, Sobre_Evento, Nome_Evento, Data_Hora, Local_Evento, Preco, QuantIdade_ingresso, telefone, email);
                 evento.atualizar()
                 .then(()=>{
                     resposta.status(200);
@@ -110,7 +110,7 @@ export default class EventoCtrl{
             resposta.status(405);
             resposta.json({
                 "status":false,
-                "mensagem": "Requisição inválida! Esperando o método PATCH, PUT e dados no formato JSON para atualizar um cliente!"
+                "mensagem": "Requisição inválIda! Esperando o método PATCH, PUT e dados no formato JSON para atualizar um cliente!"
             })
         }
     }
@@ -118,9 +118,9 @@ export default class EventoCtrl{
     excluir(requisicao, resposta){
         resposta.type('application/json');
         if (requisicao.method === "DELETE"){
-            const id = requisicao.params.id;
-            if (id && id > 0){
-                const evento = new Evento(id);
+            const Id = requisicao.params.Id;
+            if (Id && Id > 0){
+                const evento = new Evento(Id);
                 evento.excluir()
                 .then(()=>{
                     resposta.status(200);
@@ -149,7 +149,7 @@ export default class EventoCtrl{
             resposta.status(405);
             resposta.json({
                 "status":false,
-                "mensagem": "Requisição inválida! Esperando o método DELETE para excluir um evento!"
+                "mensagem": "Requisição inválIda! Esperando o método DELETE para excluir um evento!"
             })
         }
     }
@@ -176,7 +176,7 @@ export default class EventoCtrl{
             resposta.status(405);
             resposta.json({
                 "status":false,
-                "mensagem": "Requisição inválida! Esperando o método GET para consultar os eventos!"
+                "mensagem": "Requisição inválIda! Esperando o método GET para consultar os eventos!"
             })
         }
     }

@@ -15,7 +15,7 @@ export default async function conectar() {
             waitForConnections: true,
             connectionLimit: 10,
             maxIdle: 10, 
-            idleTimeout: 360000, 
+            IdleTimeout: 360000, 
             queueLimit: 0,
             enableKeepAlive: true,
             keepAliveInitialDelay: 0,
