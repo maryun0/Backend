@@ -118,7 +118,6 @@ export default class EventoCtrl{
     excluir(requisicao, resposta){
         resposta.type('application/json');
         if (requisicao.method === "DELETE"){
-            //o código do cliente que será excluído será extraído da url
             const id = requisicao.params.id;
             if (id && id > 0){
                 const evento = new Evento(id);
